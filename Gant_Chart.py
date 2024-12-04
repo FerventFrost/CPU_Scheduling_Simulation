@@ -2,11 +2,11 @@ import matplotlib.pyplot as plt
 import numpy as np
 from Process_Class import ProcessAttributes
 
-class Gant_Chart:
+class ProcessGanttChart:
     def __init__(self):
         self._Color = ['skyblue', 'salmon', 'lightgreen']
 
-    def create_dataframe(self,Algorithm_Name:str,Process:list[ProcessAttributes]):
+    def Create_GanttChart(self,Algorithm_Name:str,Process:list[ProcessAttributes]):
         _Process = Process.copy()
         _Data = []
         _PIDList = []
@@ -32,7 +32,6 @@ if __name__ == "__main__":
     ProcessList = [p1, p2, p3,p4]
     print(ProcessList)
     
-    Gant = Gant_Chart(ProcessList)
-    # Gant.create_dataframe()
-    Gant.create_dataframe()
+    Gant = ProcessGanttChart(ProcessList)
+    Gant.Create_GanttChart()
 

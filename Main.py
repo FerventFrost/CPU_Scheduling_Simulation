@@ -1,4 +1,4 @@
-from Gant_Chart import Gant_Chart
+from Gant_Chart import ProcessGanttChart
 from Process_Class import ProcessAttributes
 from Scheduling_Algorithms import Scheduling
 
@@ -15,7 +15,7 @@ SJF_NonPremptive = SchedulingAlgorithm.SJF_NonPremptive(ProcessList)
 print(FCFS[1:3])
 print(SJF_NonPremptive[1:3])
 
-Gant = Gant_Chart()
-Gant.create_dataframe("FCFS",FCFS[0])
-Gant.create_dataframe("SJF Non Premptive", SJF_NonPremptive[0])
+Gant = ProcessGanttChart()
+Gant.Create_GanttChart("FCFS",FCFS[0])
+Gant.Create_GanttChart("SJF Non Premptive", SJF_NonPremptive[0])
 

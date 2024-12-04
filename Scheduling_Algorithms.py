@@ -48,5 +48,5 @@ if __name__ == "__main__":
   ProcessList = [p1, p2, p3]
   print(ProcessList)
 
-  SchedulingAlgorithm = Scheduling(ProcessList)
-  print(SchedulingAlgorithm.FCFS())
+  SchedulingAlgorithm = Scheduling()
+  print(SchedulingAlgorithm.FCFS(ProcessList))
