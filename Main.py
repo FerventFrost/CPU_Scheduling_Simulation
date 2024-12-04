@@ -6,6 +6,7 @@ p1 = ProcessAttributes(1, 24, 0, 0, 0, 0)
 p2 = ProcessAttributes(2, 3, 0, 0, 0, 0)
 p3 = ProcessAttributes(3, 3, 0, 0, 0, 0)
 ProcessList = [p1, p2, p3]
+print(ProcessList)
 
 SchedulingAlgorithm = Scheduling(ProcessList)
 print(SchedulingAlgorithm.FCFS())
