@@ -1,32 +1,32 @@
 from Process_Class import ProcessAttributes
 class Scheduling:
-  def __init__(self, processes:list[ProcessAttributes]):
-    self.processes = processes
+  def __init__(self):
+    pass
   
-  def FCFS(self) -> tuple[int, int]:
-    _ProcessList = self.processes.copy()
+  def FCFS(self, Process:list[ProcessAttributes]) -> tuple[list[ProcessAttributes],int, int]:
+    _ProcessList = Process.copy()
     _AverageWaitingTime = 0
-    _AverageTurnAroundTime = 0
+    _AverageTurnAroundTime = _ProcessList[0].BurstTime
     _Len = len(_ProcessList)
 
-    # Dummy Process to finish the last process
-    _DummPorcess = ProcessAttributes(0, 0, 0, 0, 0, 0)
-    _ProcessList.append(_DummPorcess)
+    _ProcessList[0].WaitingTime = 0
+    _ProcessList[0].TurnAroundTime = _ProcessList[0].BurstTime
+    for i in range(1, _Len):
+      _ProcessList[i].TurnAroundTime = _ProcessList[i].BurstTime + _ProcessList[i - 1].TurnAroundTime
 
-    for i in range(len(_ProcessList) -  1):
-      # Calculate Waiting Time for next process
-      _ProcessList[i+1].WaitingTime = _ProcessList[i].BurstTime + _ProcessList[i].WaitingTime 
-      
-      _AverageWaitingTime += _ProcessList[i-1].WaitingTime
-      _AverageTurnAroundTime += _ProcessList[i].BurstTime + _ProcessList[i].WaitingTime
-      
+      _AverageTurnAroundTime += _ProcessList[i].TurnAroundTime
+      _AverageWaitingTime += _ProcessList[i - 1].TurnAroundTime
+
     _AverageWaitingTime = _AverageWaitingTime / _Len
     _AverageTurnAroundTime = _AverageTurnAroundTime / _Len
-    return (_AverageWaitingTime, _AverageTurnAroundTime)
+    return (_ProcessList, _AverageWaitingTime, _AverageTurnAroundTime)
 
 
-  def SJF_NonPremptive(self):
-    pass
+  def SJF_NonPremptive(self, Process:list[ProcessAttributes])-> tuple[list[ProcessAttributes],int, int]:
+    _ProcessList = Process.copy()
+    _ProcessList.sort(key=lambda x: x.BurstTime)
+
+    return self.FCFS(_ProcessList)
 
   def SJF_Premptive(self):
     pass

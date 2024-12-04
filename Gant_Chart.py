@@ -3,15 +3,15 @@ import numpy as np
 from Process_Class import ProcessAttributes
 
 class Gant_Chart:
-    def __init__(self, Processes:list[ProcessAttributes]):
-        self.process = Processes
+    def __init__(self):
         self._Color = ['skyblue', 'salmon', 'lightgreen']
 
-    def create_dataframe(self):
+    def create_dataframe(self,Algorithm_Name:str,Process:list[ProcessAttributes]):
+        _Process = Process.copy()
         _Data = []
         _PIDList = []
 
-        for process in self.process:
+        for process in _Process:
             _PIDList.append(process.pid)
             _Data.append([process.BurstTime])
 
@@ -19,7 +19,7 @@ class Gant_Chart:
             plt.barh(["Process"], _Data[i], left=np.sum(_Data[:i]), color=self._Color[i%3], label=f'Process {_PIDList[i]}')
 
         plt.xlabel('Values')
-        plt.title('Horizontal Stacked Bar Chart - Single Category')
+        plt.title(f"{Algorithm_Name}")
         plt.legend()
         plt.show()
 
